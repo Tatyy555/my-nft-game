@@ -47,8 +47,10 @@ function App() {
           const account = accounts[0];
           console.log("Found an authorized account:", account);
           setCurrentAccount(account);
+          checkNetwork();
         } else {
           console.log("No authorized account found");
+          checkNetwork();
         }
       }
     } catch (error) {
@@ -67,6 +69,7 @@ function App() {
       return (
         <div>
           <img src="https://i.imgur.com/TXBQ4cC.png" alt="LUFFY" />
+
           <button
             type="button"
             class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium  leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
@@ -160,6 +163,13 @@ function App() {
       <p className="text-xl m-10">
         Let's mint your One Piece character and fight with a Boss.✨
       </p>
+      {!isNetworkOk ? (
+        <p className=" animate-pulse  text-orange-500 mb-10">
+          You are not in Goerli Network...
+        </p>
+      ) : (
+        <p className="text-green-500">You are in Goerli Network!</p>
+      )}
       {renderContent()}
     </div>
   );
